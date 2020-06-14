@@ -12,6 +12,9 @@
 		<!-- <h1 class="form-heading">login Form</h1> -->
 		<div class="login-form">
 			<div class="main-div">
+				<div class="panel">
+					<h2>Login</h2>
+				</div>
 				<c:if test="${param.incorrectAccount != null}">
 					<div class="alert alert-danger">	
 							Username or password incorrect
