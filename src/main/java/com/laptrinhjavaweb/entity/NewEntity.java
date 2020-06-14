@@ -3,7 +3,7 @@ package com.laptrinhjavaweb.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "new")
+@Table(name = "article")
 public class NewEntity extends BaseEntity {
 	
 	@Column(name = "title")
