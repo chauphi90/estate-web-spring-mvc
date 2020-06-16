@@ -21,10 +21,19 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="#">Trang chủ</a>
 							</li>
+                            <li>
+                              Danh Sách Bài Viết
+                            </li>
 						</ul>
 						<!-- /.breadcrumb -->
 					</div>
 					<div class="page-content">
+                      <div class="page-header">
+                        <h1>
+                          Danh Sách Bài Viết
+                        </h1>
+                      </div>
+                      <!-- /.page-header -->
 						<div class="row">
 							<div class="col-xs-12">
 								<c:if test="${not empty message}">
