@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.laptrinhjavaweb</groupId>
-	<artifactId>spring-boot</artifactId>
+	<artifactId>real-estate-web-mvc</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
@@ -54,7 +54,7 @@
 			<version>${mysql.version}</version>
 		</dependency>
 
-		<!-- Tomcat embedded container-->
+		<!-- Tomcat embedded container -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
@@ -74,7 +74,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!--template sitemesh decorator-->
+		<!--template sitemesh decorator -->
 		<dependency>
 			<groupId>opensymphony</groupId>
 			<artifactId>sitemesh</artifactId>
@@ -85,6 +85,12 @@
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 			<version>0.7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 	</dependencies>

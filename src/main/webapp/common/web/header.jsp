@@ -10,7 +10,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Trang chủ
+				<li class="nav-item active"><a class="nav-link" href="/">Trang chủ
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<security:authorize access = "isAnonymous()">

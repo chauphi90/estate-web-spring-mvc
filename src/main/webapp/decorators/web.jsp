@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
+<title><dec:title default="Trang chủ" /></title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="web/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
