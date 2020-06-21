@@ -11,15 +11,10 @@ import org.springframework.context.annotation.Bean;
 import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-public class SpringBootWebApplication extends SpringBootServletInitializer {
-
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(SpringBootWebApplication.class);
-	}
+public class RealEstateWebMvcApplication  {
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(SpringBootWebApplication.class, args);
+		SpringApplication.run(RealEstateWebMvcApplication.class, args);
 	}
 
 	@Bean
