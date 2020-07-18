@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class UserEntity extends BaseEntity {
 
     private static final long serialVersionUID = -4988455421375043688L;
@@ -22,13 +22,16 @@ public class UserEntity extends BaseEntity {
     @Column(name = "status", nullable = false)
     private Integer status;
 
+    @Column(name = "phone")
+    private String phone;
+    
     @Column(name = "email", unique = true)
     private String email;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false))
+            joinColumns = @JoinColumn(name = "userid", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "roleid", nullable = false))
     private List<RoleEntity> roles = new ArrayList<>();
 
     public String getUserName() {
@@ -71,7 +74,15 @@ public class UserEntity extends BaseEntity {
         this.roles = roles;
     }
 
-    public String getEmail() {
+    public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
         return email;
     }
 
