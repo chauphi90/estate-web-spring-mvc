@@ -32,13 +32,13 @@ public class NewController {
 	public ModelAndView showList(@RequestParam("page") int page,
                                  @RequestParam("limit") int limit, HttpServletRequest request) {
 		NewDTO model = new NewDTO();
-		model.setPage(page);
-		model.setLimit(limit);
+//		model.setPage(page);
+//		model.setLimit(limit);
 		ModelAndView mav = new ModelAndView("admin/new/list");
 		Pageable pageable = new PageRequest(page - 1, limit);
-		model.setListResult(newService.findAll(pageable));
-		model.setTotalItem(newService.getTotalItem());
-		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
+//		model.setListResult(newService.findAll(pageable));
+//		model.setTotalItem(newService.getTotalItem());
+//		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
 		if (request.getParameter("message") != null) {
 			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));

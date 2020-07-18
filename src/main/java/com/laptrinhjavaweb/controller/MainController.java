@@ -1,4 +1,8 @@
-package com.laptrinhjavaweb.controller.web;
+package com.laptrinhjavaweb.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,23 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+@Controller
+public class MainController {
 
-@Controller(value = "homeControllerOfWeb")
-public class HomeController {
-
-	@RequestMapping(value = { "/", "/trang-chu" }, method = RequestMethod.GET)
-	public ModelAndView homePage() {
-		ModelAndView mav = new ModelAndView("web/home");
-		return mav;
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String welcomePage() {
+		return "redirect:/login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login() {
-		ModelAndView mav = new ModelAndView("login");
-		return mav;
+	public String login() {
+		return "login";
 	}
 
 	@RequestMapping(value = "/access-denied", method = RequestMethod.GET)
@@ -40,5 +38,4 @@ public class HomeController {
 		}
 		return new ModelAndView("redirect:/trang-chu");
 	}
-
 }

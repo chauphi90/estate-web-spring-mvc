@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
+  
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,6 +24,7 @@
             <div class="row">
               <div class="col-xs-12">
                 <!-- PAGE CONTENT BEGINS -->
+                <form id="searchForm" action="" method="GET" >
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="widget-box">
@@ -32,7 +36,7 @@
                       </div>
                       <div class="widget-body">
                         <div class="widget-main">
-                          <form class="form-horizontal" action="">
+                          <div class="form-horizontal" >
                             <div class="row">
                               <div class="input-group col-sm-offset-2 col-sm-8">
                                 <span class="input-group-addon">
@@ -184,7 +188,7 @@
                                 </div>
                               </div>
                             </div>
-                          </form>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -218,11 +222,11 @@
                               <span class="lbl"></span>
                             </label>
                           </th>
+                          <th>Ngày</th>
                           <th>Tên Sản Phẩm</th>
-                          <th>Địa Chỉ</th>
                           <th>Tên Quản Lý</th>
-                          <th>ĐT Quản lý</th>
-                          <th>Diện Tích Sàn</th>
+                          <th>Diện tích sàn</th>
+                          <th>Diện tích trống</th>
                           <th>Giá Thuê</th>
                           <th>Phí Dịch Vụ</th>
                           <th></th>
@@ -230,6 +234,7 @@
                       </thead>
 
                       <tbody>
+                      <c:forEach items="${paginationResult.listItem}" var="prodInfo">
                         <tr>
                           <td class="center">
                             <label class="pos-rel">
@@ -238,13 +243,13 @@
                             </label>
                           </td>
 
-                          <td>E-Town</td>
-                          <td>Cộng Hòa, Tân Bình</td>
-                          <td>Họ Và Tên G</td>
-                          <td>0123 456 789</td>
-                          <td>400 m2</td>
-                          <td>10,000,000 VNĐ</td>
-                          <td>500,000 VNĐ</td>
+                          <td>${prodInfo.createdDate }</td>
+                          <td>${prodInfo.name }</td>
+                          <td>empty</td>
+                          <td>${prodInfo.floorArea }</td>
+                          <td>undefined</td>
+                          <td>${prodInfo.rentPrice }</td>
+                          <td>${prodInfo.serviceFee }</td>
 
                           <td>
                             <div class="hidden-sm hidden-xs btn-group">
@@ -262,48 +267,18 @@
                             </div>
                           </td>
                         </tr>
-                        <tr>
-                          <td class="center">
-                            <label class="pos-rel">
-                              <input type="checkbox" class="ace" value="2" />
-                              <span class="lbl"></span>
-                            </label>
-                          </td>
-
-                          <td>ICT Tower</td>
-                          <td>Quang Trung, Quận 12</td>
-                          <td>Họ Và Tên S</td>
-                          <td>0919 191 919</td>
-                          <td>200 m2</td>
-                          <td>5,000,000 VNĐ</td>
-                          <td>300,000 VNĐ</td>
-
-                          <td>
-                            <div class="hidden-sm hidden-xs btn-group">
-                              <button class="btn btn-xs btn-success" onclick="assignBuilding(2)">
-                                <i class="ace-icon fa fa-user bigger-120"></i>
-                              </button>
-
-                              <button class="btn btn-xs btn-info">
-                                <i class="ace-icon fa fa-pencil bigger-120"></i>
-                              </button>
-
-                              <button class="btn btn-xs btn-danger">
-                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
+                        </c:forEach>
                       </tbody>
                     </table>
                     <div class="text-center">
-                    <ul class="pagination" id="pagination"></ul>
+                      <ul class="pagination" id="pagination"></ul>
                     </div> 
-                    <input type="hidden" value="" id="page" name="page"/>
-                    <input type="hidden" value="" id="limit" name="limit"/>
-                    <input type="hidden" name="" id="selectedBuildingId">
+                    <input type="hidden" id="page" name="page"/>
+					<input type="hidden" id="limit" name="limit"/>
+                    <input type="hidden" id="selectedBuildingId"/>
                   </div>
                 </div>
+                </form>
               </div>
               <!-- PAGE CONTENT END -->
             </div>
@@ -364,15 +339,21 @@
     <script type="text/javascript" src="/admin/paging/jquery.twbsPagination.js"></script>
     <script type="text/javascript">
     
+    var totalPages = ${paginationResult.totalPage};
+    var currentPage = ${paginationResult.page};
+    var limit = ${paginationResult.limit}
     $(function () {
         window.pagObj = $('#pagination').twbsPagination({
-            totalPages: 35,
+            totalPages: totalPages,
             visiblePages: 10,
+            startPage: currentPage,
             onPageClick: function (event, page) {
-                console.info(page + ' (from options)');
+            	if (currentPage != page) {
+    				$('#page').val(page);
+                	$('#limit').val(limit);
+    				$('#searchForm').submit();
+            	}
             }
-        }).on('page', function (event, page) {
-            console.info(page + ' (from event listening)');
         });
     });
 
